@@ -1,5 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+sftp-config.json
+
 # dependencies
 /node_modules
 /.pnp
@@ -10,6 +21,7 @@
 
 # production
 /build
+/.next
 
 # misc
 .DS_Store

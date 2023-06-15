@@ -1,4 +1,4 @@
-import { BlogPost } from '@/types/schema';
+import { BlogPost, Tag } from '@/types/schema';
 import { Client } from '@notionhq/client';
 import { PageObjectResponse, PartialPageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { NotionToMarkdown } from 'notion-to-md';
@@ -31,8 +31,6 @@ export class NotionService {
       ],
     });
 
-    console.dir(response, { depth: null });
-
     return response.results.reduce<BlogPost[]>((acc, page) => {
       if (NotionService.isPartialPageObjectResponse(page)) {
         // eslint-disable-next-line no-console
@@ -51,34 +49,76 @@ export class NotionService {
   }
 
   private static pageToPostTransformer(page: PageObjectResponse): BlogPost {
-    let cover: string | null = null;
-
-    /* eslint-disable indent */
-    switch (page.cover?.type) {
-      case 'file':
-        cover = page.cover?.file.url ?? '';
-        break;
-      case 'external':
-        cover = page.cover?.external.url ?? '';
-        break;
-    }
-    /* eslint-disable */
-
     return {
       id: page.id,
-      cover,
-      title: page.properties.Name.title[0].plain_text,
-      tags: page.properties.Tags.multi_select,
-      description: page.properties.Description.rich_text[0].plain_text,
-      date: new Date(page.properties.CreatedAt.created_time),
-      slug: page.properties.Slug.formula.string,
+      cover: getCoverImage(page),
+      title: getTitle(page),
+      tags: getMultiSelect(page, 'Tags'),
+      description: getRichText(page, 'Description'),
+      date: getCreatedTime(page, 'CreatedAt'),
+      slug: getFormula(page, 'Slug'),
     };
   }
 }
 
-type ValueOf<T> = T[keyof T];
+const getCoverImage = (page: PageObjectResponse): string | null => {
+  let cover: string | null = null;
 
-function getPropContent(prop: ValueOf<PageObjectResponse['properties']>) {
-  const type = prop.type;
-  return prop[type] ?? null;
-}
+  /* eslint-disable indent */
+  switch (page.cover?.type) {
+    case 'file':
+      cover = page.cover?.file.url ?? '';
+      break;
+    case 'external':
+      cover = page.cover?.external.url ?? '';
+      break;
+  }
+  /* eslint-disable */
+
+  return cover;
+};
+
+const getTitle = (page: PageObjectResponse): string => {
+  const prop = page.properties.Name;
+  if (prop.type === 'title' && prop.title.length > 0) {
+    return prop.title.reduce((acc, text) => {
+      if (text.type === 'text') {
+        return acc + text.plain_text;
+      }
+      return acc;
+    }, '');
+  }
+  return '';
+};
+
+const getMultiSelect = (page: PageObjectResponse, key: string): Tag[] => {
+  const prop = page.properties[key];
+  if (prop.type === 'multi_select') {
+    return prop.multi_select;
+  }
+  return [];
+};
+
+const getRichText = (page: PageObjectResponse, key: string): string => {
+  const prop = page.properties[key];
+  if (prop.type === 'rich_text' && prop.rich_text.length > 0) {
+    return prop.rich_text[0].plain_text;
+  }
+  return '';
+};
+
+const getCreatedTime = (page: PageObjectResponse, key: string): Date => {
+  const prop = page.properties[key];
+  if (prop.type === 'created_time') {
+    return new Date(prop.created_time);
+  }
+  return new Date(page.created_time);
+};
+
+const getFormula = (page: PageObjectResponse, key: string): string => {
+  const prop = page.properties[key];
+  if (prop.type === 'formula' && prop.formula.type === 'string') {
+    return prop.formula.string ?? '';
+  }
+  return '';
+};

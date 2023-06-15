@@ -8,6 +8,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.59.11
   '@typescript-eslint/parser': ^5.59.11
   autoprefixer: 10.4.14
+  clsx: ^1.2.1
   eslint: 8.42.0
   eslint-config-next: 13.4.5
   eslint-plugin-import: ^2.27.5
@@ -22,16 +23,19 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-markdown: ^8.0.7
+  tailwind-merge: ^1.13.1
   tailwindcss: 3.3.2
   typescript: 5.0.4
 
 dependencies:
   '@notionhq/client': 2.2.5
+  clsx: 1.2.1
   next: 13.4.5_biqbaboplfbrettd7655fr4n2y
   notion-to-md: 3.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-markdown: 8.0.7_amj33xoxfucvzb42rb6rqg7bp4
+  tailwind-merge: 1.13.1
 
 devDependencies:
   '@types/node': 20.3.1
@@ -765,6 +769,11 @@ packages:
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: false
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
     dev: false
 
   /color-convert/2.0.1:
@@ -3066,6 +3075,10 @@ packages:
       '@pkgr/utils': 2.4.1
       tslib: 2.5.3
     dev: true
+
+  /tailwind-merge/1.13.1:
+    resolution: {integrity: sha512-tRtRN22TDokGi2TuYSvuHQuuW6BJ/zlUEG+iYpAQ9i66msc/0eU/+HPccbPnNNH0mCPp0Ob8thaC8Uy9CxHitQ==}
+    dev: false
 
   /tailwindcss/3.3.2:
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}

@@ -1,8 +1,13 @@
 import PostList from '@/components/post-list/PostList';
 import { NotionService } from '@/services/NotionService';
+import { Metadata } from 'next';
 
 // @see https://nextjs.org/docs/app/building-your-application/data-fetching/revalidating#background-revalidation
 export const revalidate = 3600; // revalidate this page every 60 minutes
+
+export const metadata: Metadata = {
+  title: process.env.SITE_NAME,
+};
 
 export default async function Home() {
   const notionService = new NotionService();

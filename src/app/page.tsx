@@ -1,6 +1,9 @@
 import PostList from '@/components/post-list/PostList';
 import { NotionService } from '@/services/NotionService';
 
+// @see https://nextjs.org/docs/app/building-your-application/data-fetching/revalidating#background-revalidation
+export const revalidate = 3600; // revalidate this page every 60 minutes
+
 export default async function Home() {
   const notionService = new NotionService();
   const posts = await notionService.getPublishedBlogPots();

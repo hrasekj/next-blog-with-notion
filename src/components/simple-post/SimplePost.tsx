@@ -22,7 +22,7 @@ export const SimplePost: FC<Props> = ({ post }) => (
       />
       <TagList tags={post.tags} />
 
-      <Link className="flex flex-wrap no-underline hover:no-underline" href="#">
+      <Link className="flex flex-wrap no-underline hover:no-underline" href={post.slug}>
         <h3 className="w-full font-bold text-xl mt-6 px-6">{post.title}</h3>
         <p className="font-serif text-base px-6 mb-5">{post.description}</p>
       </Link>

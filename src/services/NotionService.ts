@@ -76,13 +76,13 @@ export class NotionService {
     const typeHackPage = page as PageObjectResponse;
 
     const mdBlocks = await this.n2m.pageToMarkdown(typeHackPage.id);
-    const markdown = this.n2m.toMarkdownString(mdBlocks);
+    const mdObject = this.n2m.toMarkdownString(mdBlocks);
 
     const post = pageToPostTransformer(typeHackPage);
 
     return {
       post,
-      markdown,
+      markdown: Object.values(mdObject).join('\n'),
     };
   }
 }

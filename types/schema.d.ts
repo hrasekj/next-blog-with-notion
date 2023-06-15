@@ -16,5 +16,5 @@ export type BlogPost = {
 
 export type PostPage = {
   post: BlogPost;
-  markdown: Record<string, string>;
+  markdown: string;
 };

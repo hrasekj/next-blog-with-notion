@@ -11,7 +11,24 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.white'),
+            a: {
+              color: theme('colors.white'),
+              textDecoration: 'none',
+              borderBottomWidth: '2px',
+              borderBottomColor: theme('colors.green.500'),
+              '&:hover': {
+                color: theme('colors.green.500'),
+              },
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

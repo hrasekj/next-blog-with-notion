@@ -7,7 +7,7 @@ export type Tag = {
 export type BlogPost = {
   id: string;
   slug: string;
-  cover: string | null;
+  cover?: string;
   title: string;
   tags: Tag[];
   description: string;

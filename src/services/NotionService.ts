@@ -105,8 +105,8 @@ const pageToPostTransformer = (page: PageObjectResponse): BlogPost => {
   };
 };
 
-const getCoverImage = (page: PageObjectResponse): string | null => {
-  let cover: string | null = null;
+const getCoverImage = (page: PageObjectResponse): string | undefined => {
+  let cover: string | undefined;
 
   /* eslint-disable indent */
   switch (page.cover?.type) {

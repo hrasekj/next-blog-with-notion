@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Header: FC<Props> = ({ title }) => (
-  <header className="w-full m-0 p-0 bg-cover bg-bottom relative overflow-hidden h-[80vh] max-h-[600px]">
+  <header className="w-full m-0 p-0 bg-cover bg-bottom relative overflow-hidden h-[80vh] max-h-[300px] md:max-h-[600px]">
     <Image
       className="absolute w-full h-auto object-cover z-0"
       src="/greatmaze.jpeg"

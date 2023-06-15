@@ -7,7 +7,7 @@ type TagListProps = {
 };
 
 const TagList: FC<TagListProps> = ({ tags }) => (
-  <div className="w-full flex flex-wrap gap-2 items-center justify-center">
+  <div className="w-full flex flex-wrap gap-2 items-center justify-center pt-6">
     {tags.map(({ id, name, color }) => (
       <span
         key={id}

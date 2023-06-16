@@ -16,6 +16,15 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.white'),
+            h1: {
+              color: theme('colors.white'),
+            },
+            h2: {
+              color: theme('colors.white'),
+            },
+            h3: {
+              color: theme('colors.white'),
+            },
             a: {
               color: theme('colors.white'),
               textDecoration: 'none',
